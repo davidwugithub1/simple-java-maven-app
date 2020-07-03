@@ -1,8 +1,5 @@
 pipeline {
-    agent {
-        label 'java-docker-agent'
-        'java-docker-agent'
-    }
+    agent any
     stages {
         stage('Build') {
             agent {
