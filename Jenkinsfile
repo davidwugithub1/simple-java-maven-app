@@ -24,7 +24,7 @@ pipeline {
         stage('Deliver') {
             steps {
                 sh 'pwd'
-                sh 'ls -ltra /root/.m2'
+                sh 'cat ./jenkins/scripts/deliver.sh'
                 sh './jenkins/scripts/deliver.sh'
             }
         }
