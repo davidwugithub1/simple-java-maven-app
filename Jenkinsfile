@@ -9,15 +9,21 @@ pipeline {
                docker {
                     image 'maven:3-alpine'
                     args '-v /root/.m2:/root/test/.m2'
-//                    label 'java-docker-agent'
+                    label 'java-docker-agent'
                 }
             }
             steps {
                 sh 'mvn -B -DskipTests clean package'
-                sh 'sleep 180'
             }
         }
         stage('Test') {
+            agent {
+               docker {
+                    image 'maven:3-alpine'
+                    args '-v /root/.m2:/root/test/.m2'
+                    label 'java-docker-agent'
+                }
+            }
             steps {
                 sh 'mvn test'
             }
@@ -28,6 +34,13 @@ pipeline {
             }
         }
         stage('Deliver') {
+            agent {
+               docker {
+                    image 'maven:3-alpine'
+                    args '-v /root/.m2:/root/test/.m2'
+                    label 'java-docker-agent'
+                }
+            }
             steps {
                 sh 'pwd'
                 sh 'cat ./jenkins/scripts/deliver.sh'
