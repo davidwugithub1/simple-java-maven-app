@@ -3,13 +3,13 @@ pipeline {
         label 'java-docker-agent'
     }
     stages {
+        stage('Build') {
 //            agent {
 //               docker {
 //                    image 'maven:3-alpine'
 //                    args '-v /root/.m2:/root/.m2'
 //                }
 //            }
-        stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
@@ -28,6 +28,7 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'cat ./jenkins/scripts/deliver.sh'
+                sh 'mvn clean'
                 sh './jenkins/scripts/deliver.sh'
             }
         }
