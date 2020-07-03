@@ -37,7 +37,7 @@ pipeline {
             }
             steps {
                 sh 'pwd'
-                sh 'ls -ltra /root/.m2'
+                sh 'sudo ls -ltra /root/.m2'
                 sh './jenkins/scripts/deliver.sh'
             }
         }
