@@ -13,6 +13,7 @@ pipeline {
             }
             steps {
                 sh 'mvn -B -DskipTests clean package'
+                sh 'sleep 180'
             }
         }
         stage('Test') {
