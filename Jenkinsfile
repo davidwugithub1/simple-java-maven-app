@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'java-docker-agent'
+    }
     stages {
         stage('Build') {
             agent {
@@ -13,12 +15,6 @@ pipeline {
             }
         }
         stage('Test') {
-            agent {
-                docker {
-                    image 'maven:3-alpine'
-                    args '-v /root/.m2:/root/.m2'
-                }
-            }
             steps {
                 sh 'mvn test'
             }
