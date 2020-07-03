@@ -28,7 +28,6 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'cat ./jenkins/scripts/deliver.sh'
-                sh 'mvn clean'
                 sh './jenkins/scripts/deliver.sh'
             }
         }
