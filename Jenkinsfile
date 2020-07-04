@@ -4,7 +4,7 @@ pipeline {
 //    }
     agent {
         docker {
-            image 'maven:3-alpine'
+//            image 'maven:3-alpine'
             args '-v /root/.m2:/root/test/.m2'
             label 'java-docker-agent'
         }
