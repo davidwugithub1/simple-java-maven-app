@@ -6,12 +6,12 @@ pipeline {
     stages {
         stage('Build') {
             agent {
-//               docker {
-//                    image 'maven:3-alpine'
-//                    args '-v /root/.m2:/root/test/.m2'
-//                    label 'java-docker-agent'
-//                }
-                label 'java-docker-agent'
+               docker {
+                    image 'maven:3-alpine'
+                    args '-v /root/.m2:/root/test/.m2'
+                    label 'java-docker-agent'
+                }
+//                label 'java-docker-agent'
             }
             steps {
                 sh 'mvn -B -DskipTests clean package'
@@ -19,11 +19,12 @@ pipeline {
         }
         stage('Test') {
             agent {
-                label 'java-docker-agent'
-            }
-            options {
-                timeout(time: 120, unit: 'SECONDS')
-                retry(3) 
+               docker {
+                    image 'maven:3-alpine'
+                    args '-v /root/.m2:/root/test/.m2'
+                    label 'java-docker-agent'
+                }
+//                label 'java-docker-agent'
             }
             steps {
                 sh 'mvn test'
@@ -36,7 +37,12 @@ pipeline {
         }
         stage('Deliver') {
             agent {
-                label 'java-docker-agent'
+               docker {
+                    image 'maven:3-alpine'
+                    args '-v /root/.m2:/root/test/.m2'
+                    label 'java-docker-agent'
+                }
+//                label 'java-docker-agent'
             }
             steps {
                 sh 'pwd'
