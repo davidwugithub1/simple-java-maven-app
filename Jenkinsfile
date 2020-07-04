@@ -24,6 +24,9 @@ pipeline {
                     label 'java-docker-agent'
                 }
             }
+            options {
+                timeout(time: 60, unit: 'SECONDS')
+            }
             steps {
                 sh 'mvn test'
             }
