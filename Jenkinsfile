@@ -12,6 +12,7 @@ pipeline {
 //                    label 'java-docker-agent'
 //                }
                 label 'java-docker-agent'
+                args '-v /root/.m2:/root/test/.m2'
             }
             steps {
                 sh 'mvn -B -DskipTests clean package'
@@ -36,7 +37,8 @@ pipeline {
         }
         stage('Deliver') {
             agent {
-               label 'java-docker-agent'
+                label 'java-docker-agent'
+                args '-v /root/.m2:/root/test/.m2'
             }
             steps {
                 sh 'pwd'
