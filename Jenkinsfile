@@ -8,6 +8,7 @@ pipeline {
             args '-v /root/.m2:/root/test/.m2'
             label 'java-docker-agent'
         }
+    }
     stages {
         stage('Build') {
             steps {
