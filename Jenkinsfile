@@ -26,6 +26,7 @@ pipeline {
             }
             options {
                 timeout(time: 120, unit: 'SECONDS')
+                retry(3) 
             }
             steps {
                 sh 'mvn test'
