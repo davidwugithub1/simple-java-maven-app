@@ -11,10 +11,10 @@ pipeline {
 //        }
 //    }
     stages {
-    agent {
-        label 'java-docker-agent'
-    }
         stage('Build') {
+            agent {
+                label 'java-docker-agent'
+            }
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
