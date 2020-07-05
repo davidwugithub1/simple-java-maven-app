@@ -1,7 +1,7 @@
 pipeline {
-    agent {
-        label 'java-docker-agent'
-    }
+//    agent {
+//        label 'java-docker-agent'
+//    }
 //    agent {
 //        docker {
 //            image 'maven:3-alpine'
@@ -11,6 +11,9 @@ pipeline {
 //    }
     stages {
         stage('Build') {
+    agent {
+        label 'java-docker-agent'
+    }
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
