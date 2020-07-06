@@ -22,6 +22,7 @@ pipeline {
             }
             steps {
                 sh 'mvn -B -DskipTests clean package'
+                sh 'docker info'
             }
         }
         stage('Test') {
