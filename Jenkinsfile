@@ -12,14 +12,14 @@ pipeline {
 //        }
 //    }
     stages {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/test/.m2'
-            label 'maven-build'
-        }
-    }
         stage('Build') {
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                    args '-v /root/.m2:/root/test/.m2'
+                    label 'maven-build'
+                }
+            }
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
