@@ -12,10 +12,11 @@ pipeline {
 //        }
 //    }
     environment {
-    }
+    registry = "davidwu93/jenkins"
+    registryCredential = "Docker hub ID"
+  }
     stages {
         stage('Build') {
-    withCredentials([usernamePassword(credentialsId: 'docker-hub-id', passwordVariable: 'pass', usernameVariable: 'user')]) {
             agent {
                 docker {
                     //image 'maven:3-alpine'
@@ -25,7 +26,6 @@ pipeline {
                     label 'maven-build'
                 }
             }
-    }
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
