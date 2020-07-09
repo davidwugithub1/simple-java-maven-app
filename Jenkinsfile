@@ -12,14 +12,8 @@ pipeline {
 //        }
 //    }
     environment {
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-id', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                    // some block
-                    sh '''
-                       set +x
-                       echo "my user: " $user " my password: " $pass
-                    '''
-                }
     }
+    withCredentials([usernamePassword(credentialsId: 'docker-hub-id', passwordVariable: 'pass', usernameVariable: 'user')]) {
     stages {
         stage('Build') {
             agent {
@@ -66,5 +60,6 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
+    }
     }
 }
