@@ -24,7 +24,6 @@ pipeline {
     environment {
         registry = "davidwu93/jenkins"
         registryCredential = "docker-hub-id"
-        }
     }
     stages {
         stage('Build') {
