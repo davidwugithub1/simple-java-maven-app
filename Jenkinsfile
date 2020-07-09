@@ -16,7 +16,8 @@ pipeline {
             agent {
                 docker {
                     //image 'maven:3-alpine'
-                    image 'davidwu93/jenkins-agent:1.0'
+                    //image 'davidwu93/jenkins-agent:1.0'
+                    image 'davidwu93/jenkins:2.0'
                     //args '-v /tmp/jenkins/.m2:/root/test/.m2'
                     label 'maven-build'
                 }
