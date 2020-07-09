@@ -15,6 +15,15 @@ pipeline {
     registry = "davidwu93/jenkins"
     registryCredential = "Docker hub ID"
   }
+    node {
+        checkout scm
+
+        docker.withRegistry('https://hub.docker.com/', 'Docker hub ID') {
+            def image = docker.image('davidwu93/jenkins:2.0')
+            image.pull()
+
+        }
+    }
     stages {
         stage('Build') {
             agent {
