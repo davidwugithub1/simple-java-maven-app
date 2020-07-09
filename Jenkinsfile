@@ -13,12 +13,14 @@ pipeline {
 //    }
     stages {
         stage('Build') {
-            withCredentials([usernamePassword(credentialsId: 'docker-hub-id', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                // some block
-                sh '''
-                   set +x
-                   echo "my user: " $user " my password: " $pass
-                '''
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-id', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                    // some block
+                    sh '''
+                       set +x
+                       echo "my user: " $user " my password: " $pass
+                    '''
+                }
             }
             agent {
                 docker {
