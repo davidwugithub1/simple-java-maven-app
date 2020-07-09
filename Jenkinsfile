@@ -13,9 +13,9 @@ pipeline {
 //    }
     environment {
     }
-    withCredentials([usernamePassword(credentialsId: 'docker-hub-id', passwordVariable: 'pass', usernameVariable: 'user')]) {
     stages {
         stage('Build') {
+    withCredentials([usernamePassword(credentialsId: 'docker-hub-id', passwordVariable: 'pass', usernameVariable: 'user')]) {
             agent {
                 docker {
                     //image 'maven:3-alpine'
@@ -25,6 +25,7 @@ pipeline {
                     label 'maven-build'
                 }
             }
+    }
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
@@ -60,6 +61,5 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
-    }
     }
 }
