@@ -60,6 +60,9 @@ pipeline {
             }
         }
         stage('Deliver') {
+            agent {
+                label 'maven-build'
+            }
             steps {
                 sh 'pwd'
                 sh 'cat ./jenkins/scripts/deliver.sh'
