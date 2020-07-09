@@ -22,10 +22,12 @@ pipeline {
 //        }
 //    }
     environment {
-    registry = "davidwu93/jenkins"
-    registryCredential = "Docker hub ID"
+        registry = "davidwu93/jenkins"
+        registryCredential = "Docker hub ID"
+        }
     }
-    docker.withRegistry('', 'docker-hub-id') {
+    node {
+        docker.withRegistry('', 'docker-hub-id') {
         def image = docker.image('davidwu93/jenkins:2.0')
         image.pull()
     }
