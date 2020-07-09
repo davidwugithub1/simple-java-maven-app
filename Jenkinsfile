@@ -1,7 +1,8 @@
 node {
     checkout scm
 
-    docker.withRegistry('https://hub.docker.com/', 'docker-hub-id') {
+    //docker.withRegistry('https://hub.docker.com/', 'docker-hub-id') {
+    docker.withRegistry('', 'docker-hub-id') {
         def image = docker.image('davidwu93/jenkins:2.0')
         image.pull()
     }
