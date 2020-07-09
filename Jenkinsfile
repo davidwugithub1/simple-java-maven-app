@@ -61,7 +61,13 @@ pipeline {
         }
         stage('Deliver') {
             agent {
-                label 'maven-build'
+                docker {
+                    //image 'maven:3-alpine'
+                    image 'davidwu93/maven-3-alpine:1.0'
+                    //args '-v /root/.m2:/root/test/.m2' THIS LINE IS USELESS
+                    label 'maven-build'
+                    registryCredentialsId 'docker-hub-id'
+                }
             }
             steps {
                 sh 'pwd'
