@@ -6,9 +6,9 @@ node {
         def image = docker.image('davidwu93/jenkins:2.0')
         image.pull()
     }
-}
+//}
 
-pipeline {
+//pipeline {
     agent none
 //    agent {
 //        label 'java-docker-agent'
