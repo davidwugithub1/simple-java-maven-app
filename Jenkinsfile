@@ -60,8 +60,6 @@ pipeline {
             }
         }
         stage('Deliver') {
-            agent {
-            }
             steps {
                 sh 'pwd'
                 sh 'cat ./jenkins/scripts/deliver.sh'
