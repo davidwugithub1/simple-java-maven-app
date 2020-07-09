@@ -11,9 +11,7 @@ pipeline {
 //            label 'java-docker-agent'
 //        }
 //    }
-    stages {
-        stage('Build') {
-            steps {
+    environment {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-id', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     // some block
                     sh '''
@@ -21,7 +19,9 @@ pipeline {
                        echo "my user: " $user " my password: " $pass
                     '''
                 }
-            }
+    }
+    stages {
+        stage('Build') {
             agent {
                 docker {
                     //image 'maven:3-alpine'
