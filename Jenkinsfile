@@ -4,6 +4,7 @@ node {
     docker.withRegistry('https://hub.docker.com/', 'Docker hub ID') {
         def image = docker.image('davidwu93/jenkins:2.0')
         image.pull()
+    }
 }
 
 pipeline {
