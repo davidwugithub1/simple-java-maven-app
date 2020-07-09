@@ -23,13 +23,8 @@ pipeline {
 //    }
     environment {
         registry = "davidwu93/jenkins"
-        registryCredential = "Docker hub ID"
+        registryCredential = "docker-hub-id"
         }
-    }
-    node {
-        docker.withRegistry('', 'docker-hub-id') {
-        def image = docker.image('davidwu93/jenkins:2.0')
-        image.pull()
     }
     stages {
         stage('Build') {
@@ -40,6 +35,7 @@ pipeline {
                     image 'davidwu93/jenkins:2.0'
                     //args '-v /tmp/jenkins/.m2:/root/test/.m2'
                     label 'maven-build'
+                    registryCredentialsId 'docker-hub-id'
                 }
             }
             steps {
