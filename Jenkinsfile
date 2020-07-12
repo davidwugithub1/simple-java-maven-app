@@ -8,48 +8,25 @@
 //}
 
 pipeline {
-    agent none
-//    agent {
-//        label 'java-docker-agent'
-//    }
-//    agent {
-//        docker {
+    agent {
+        docker {
 //            image 'maven:3-alpine'
-//            image 'davidwu93/jenkins-agent:1.0'
+            image 'davidwu93/jenkins-agent:1.0'
 //            args '-v /root/.m2:/root/test/.m2'
-//            label 'java-docker-agent'
-//        }
-//    }
+            label 'java-docker-agent'
+        }
+    }
     environment {
         registry = "davidwu93/jenkins"
         registryCredential = "docker-hub-id"
     }
     stages {
         stage('Build') {
-            agent {
-                docker {
-                    image 'davidwu93/maven-3-alpine:1.0'
-                    //image 'davidwu93/jenkins-agent:1.0'
-                    //image 'davidwu93/jenkins:2.0'
-                    //args '-v /tmp/jenkins/.m2:/root/test/.m2'
-                    label 'maven-build'
-                    registryCredentialsId 'docker-hub-id'
-                }
-            }
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
-            agent {
-                docker {
-                    //image 'maven:3-alpine'
-                    image 'davidwu93/maven-3-alpine:1.0'
-                    args '-v /root/.m2:/root/test/.m2'
-                    label 'maven-build'
-                    registryCredentialsId 'docker-hub-id'
-                }
-            }
             steps {
                 sh 'mvn test'
             }
@@ -60,15 +37,6 @@ pipeline {
             }
         }
         stage('Deliver') {
-            agent {
-                docker {
-                    //image 'maven:3-alpine'
-                    image 'davidwu93/maven-3-alpine:1.0'
-                    //args '-v /root/.m2:/root/test/.m2' THIS LINE IS USELESS
-                    label 'maven-build'
-                    registryCredentialsId 'docker-hub-id'
-                }
-            }
             steps {
                 sh 'pwd'
                 sh 'cat ./jenkins/scripts/deliver.sh'
