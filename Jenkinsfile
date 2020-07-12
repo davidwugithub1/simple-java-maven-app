@@ -9,12 +9,12 @@
 
 pipeline {
     agent {
-        docker {
+//        docker {
 //            image 'maven:3-alpine'
 //            image 'davidwu93/jenkins-agent:1.0'
 //            args '-v /root/.m2:/root/test/.m2'
-            label 'java-docker-agent'
-        }
+//        }
+        label 'java-docker-agent'
     }
     environment {
         registry = "davidwu93/jenkins"
