@@ -16,10 +16,10 @@ pipeline {
 //        }
         label 'java-docker-agent'
     }
-    environment {
-        registry = "davidwu93/jenkins"
-        registryCredential = "docker-hub-id"
-    }
+//    environment {
+//        registry = "davidwu93/jenkins"
+//        registryCredential = "docker-hub-id"
+//    }
     stages {
         stage('Build') {
             steps {
