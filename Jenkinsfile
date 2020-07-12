@@ -14,7 +14,8 @@ pipeline {
 //            image 'davidwu93/jenkins-agent:1.0'
 //            args '-v /root/.m2:/root/test/.m2'
 //        }
-        label 'cloud-edge'
+        //label 'cloud-edge'
+        label 'java-docker-agent'
     }
 //    environment {
 //        registry = "davidwu93/jenkins"
